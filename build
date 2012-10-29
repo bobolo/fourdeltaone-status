@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Disable case-sensitivity (log4net file name fix)
+MONO_IOMAP=case
+
+# Build the backend
+xbuild backend/backend.csproj
