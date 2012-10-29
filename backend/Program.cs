@@ -34,15 +34,22 @@ namespace fdocheck
 
             var appender = new log4net.Appender.ManagedColoredConsoleAppender();
             appender.Threshold = log4net.Core.Level.All;
-            XmlConfigurator.Configure(config.SelectSingleNode("/log4net") as XmlElement);
+            var x = (XmlElement)config.SelectSingleNode("//backend/log4net");
+            if(x == null)
+            {
+                Console.WriteLine("Error: log4net configuration node not found. Check your config.xml");
+                Console.ReadKey();
+                return;
+            }
+            XmlConfigurator.Configure(x);
 
             api = new APIServer();
             auth = new FDOAuthServerCheck();
             iw4m = new Iw4mCheck(auth);
             iw5m = new Iw5mCheck(auth);
 
-            auth.TestUsername = config.SelectSingleNode("/test-username").InnerText;
-            auth.TestPassword = config.SelectSingleNode("/test-password").InnerText;
+            auth.TestUsername = config.SelectSingleNode("//backend/auth-username").InnerText;
+            auth.TestPassword = config.SelectSingleNode("//backend/auth-password").InnerText;
 
             api.Content.Add("login", auth);
             api.Content.Add("iw4m", iw4m);
