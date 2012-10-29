@@ -1,0 +1,6 @@
+[submodule "external/log4net"]
+	path = external/log4net
+	url = https://github.com/apache/log4net
+[submodule "external/json.net"]
+	path = external/json.net
+	url = https://github.com/JamesNK/Newtonsoft.Json
