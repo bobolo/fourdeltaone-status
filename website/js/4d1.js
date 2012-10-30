@@ -106,7 +106,7 @@ function parseCache(d)
 		+ (2 * bool2int(d["login"]["AuthInternalOnline"]));
 
 	var suffix = ".green";
-	var title = "All services up";
+	var title = "Everything's working";
 	var description = "No issues have been detected yet.";
 	if(level <= 10)
 	{
@@ -117,7 +117,7 @@ function parseCache(d)
 	}
 	else if(level < 20)
 	{
-		title = "Partial downtime";
+		title = "Degraded performance mode";
 		description = "FourDeltaOne has problems on some interfaces, check below to see which interfaces are affected by the problem.";
 		suffix = ".yellow";
 	}
