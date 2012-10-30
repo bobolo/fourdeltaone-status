@@ -48,6 +48,7 @@ function gen_leds($titles)
 		<? menu(); ?>
 		<p style="padding: 20px 5px 5px 5px; font-size: 32px; font-family: Electrolize; display: none">
 			<span id="fdocol">fourdeltaone</span>.<?=$_GET["page"] ?>
+			<span style="font-size: 11px"><?=$_SERVER["SERVER_NAME"] ?></span>
 		</p>
 		</div>
 	</div>
@@ -58,12 +59,9 @@ function gen_leds($titles)
 
 	<? require "pages/".$_GET["page"].".php"; ?>
 
-
-	<div style="text-align: center; font-size: 8px; padding-top: 50px; color: #444">
-		<p>This status page is being maintained by Icedream, not by the 4D1 staff. &copy; 2012 Icedream</p>
-		<p><!-- Do not remove -->Designed by <a href="http://www.metamorphozis.com/free_templates/free_templates.php" title="Free Web Templates">Free Web Templates</a>, coded by <a href="http://www.myfreecsstemplates.com/" title="Free CSS Templates">Free CSS Templates</a><!-- end -->.<br />
-		Modified by <a href="http://blog.icedreamonline.tk/">Icedream</a>.</p>
-	</div>
+<div style="text-align: center; font-size: 8px; padding-top: 50px; color: #444">
+	<p>This status page is being maintained by Icedream, not by the 4D1 staff. &copy; 2012 Icedream</p>
+</div>
 					<? /*
 	<div id="footer_repeat_bg" style="font-size: 8px">
 		<div id="footer_bg">
