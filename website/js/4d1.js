@@ -75,6 +75,8 @@ function parseCache(d)
 	if(window.location.pathname == "/status")
 		$("#content").fadeIn("fast");
 
+	$("#fdoss").text(d["backend-name"]);
+
 	server("iw4m-np", d["iw4m"]["NPOnline"], d["iw4m"]["NPCounter"], d["iw4m"]["CacheIntervals"]["np"]);
 	server("iw4m-master", d["iw4m"]["MasterOnline"], d["iw4m"]["MasterCounter"], d["iw4m"]["CacheIntervals"]["master"]);
 
@@ -106,12 +108,12 @@ function parseCache(d)
 		+ (2 * bool2int(d["login"]["AuthInternalOnline"]));
 
 	var suffix = ".green";
-	var title = "Everything's working";
+	var title = "It's not red! :o";
 	var description = "No issues have been detected yet.";
 	if(level <= 10)
 	{
-		title = "Critical downtime";
-		description = "FourDeltaOne is having a critical downtime, check below to see which interfaces are affected by the downtime.<br />"
+		title = "???";
+		description = "?????????????????????????!!!!<br />"
 			+ "If you have nothing to do, try <a href=\"random\">this</a>.";
 		suffix = ".red";
 	}

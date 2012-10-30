@@ -48,7 +48,7 @@ function gen_leds($titles)
 		<? menu(); ?>
 		<p style="padding: 20px 5px 5px 5px; font-size: 32px; font-family: Electrolize; display: none">
 			<span id="fdocol">fourdeltaone</span>.<?=$_GET["page"] ?>
-			<span style="font-size: 11px"><?=$_SERVER['SERVER_ADDR'] ?></span>
+			<span style="font-size: 11px" id="fdoss"><!-- --></span>
 		</p>
 		</div>
 	</div>
