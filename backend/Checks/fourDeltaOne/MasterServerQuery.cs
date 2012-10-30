@@ -67,8 +67,8 @@ namespace fdocheck.Checks
                     log.Debug("Sending request: " + Encoding.ASCII.GetString(content).Trim() + " to: " + MasterServer + ", port " + MasterPort);
 
                     UdpClient udp = new UdpClient();
-                    udp.Client.ReceiveTimeout = 2000;
-                    udp.Client.SendTimeout = 1000;
+                    udp.Client.ReceiveTimeout = 4000;
+                    udp.Client.SendTimeout = 3000;
                     udp.Connect(MasterServer, MasterPort);
 
                     var servers = new List<MasterServerEntry>();
@@ -94,8 +94,8 @@ namespace fdocheck.Checks
                                 && thispack[3] == (byte)0xFF)
                                 thispack = thispack.Skip("####getserversResponse".Length).ToArray<byte>();
                             data.AddRange(thispack);
-                            udp.Client.ReceiveTimeout = 300;
-                            udp.Client.SendTimeout = 300;
+                            udp.Client.ReceiveTimeout = 1000;
+                            udp.Client.SendTimeout = 1000;
 
                             if (length < 1394) // Found out by testing that every non-ending packet has 1394 bytes maximum. Works on every master server.
                                 break;
