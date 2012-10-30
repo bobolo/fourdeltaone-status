@@ -9,7 +9,7 @@ namespace System.Net
     {
         public TimeoutableWebClient()
         {
-            Timeout = 2000;
+            Timeout = 4000;
         }
 
         protected override WebRequest GetWebRequest(Uri address)
