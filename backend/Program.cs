@@ -16,6 +16,7 @@ namespace fdocheck
     {
         static readonly ILog log = LogManager.GetLogger(typeof(Program));
 
+        public static string BackendName = "StatusAPI";
         static APIServer api;
         static FDOAuthServerCheck auth;
         static Iw4mCheck iw4m;
@@ -51,11 +52,14 @@ namespace fdocheck
             auth.TestUsername = config.SelectSingleNode("//backend/auth-username").InnerText;
             auth.TestPassword = config.SelectSingleNode("//backend/auth-password").InnerText;
 
+            BackendName = config.SelectSingleNode("//backend/backend-name").InnerText;
+
             api.Content.Add("login", auth);
             api.Content.Add("iw4m", iw4m);
             api.Content.Add("iw5m", iw5m);
             api.Content.Add("forum", new WebCheck("http://fourdeltaone.net/index.php", 60));
             api.Content.Add("kmshost", new KmshostCheck());
+            api.Content.Add("backend-name", BackendName);
             api.Start();
 
             Console.WriteLine("API server starting, regular checks are now enabled.");
