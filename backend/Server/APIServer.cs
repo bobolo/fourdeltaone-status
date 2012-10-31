@@ -18,7 +18,12 @@ namespace fdocheck.Server
         HttpListener listener = new HttpListener();
         Thread lthr;
 
+        // /api/cache/*
         public Dictionary<string, object> Content = new Dictionary<string, object>();
+        // /api/serverlist/*
+        public Dictionary<string, object> ServerLists = new Dictionary<string, object>();
+        // /api/status/*
+        public Dictionary<string, BasicStatusIndicator> StatusIndicators = new Dictionary<string, BasicStatusIndicator>();
 
         public APIServer(int port = 29001)
         {
@@ -83,50 +88,122 @@ namespace fdocheck.Server
         {
             try
             {
-                string cmd = req.Request.Url.LocalPath.Split('/').Last().ToLower();
+                string path = string.Join("/", req.Request.Url.LocalPath.Split('/').Skip(2));
+                Console.WriteLine("[HTTP] " + path);
+                string cmd = path.Split('/')[0].ToLower();
+                Console.WriteLine("[HTTP] CMD = " + cmd);
                 switch (cmd)
                 {
-                    case "cache":
+                    case "serverlist":
                         {
-                            Task<string> json = JsonConvert.SerializeObjectAsync(this.Content, Formatting.Indented);
-                            req.Response.KeepAlive = false;
-                            req.Response.ProtocolVersion = req.Request.ProtocolVersion;
-                            if (!json.Wait(3000))
+                            if (path.Split('/').Length == 2)
                             {
-                                req.Response.StatusCode = 503;
-                                req.Response.StatusDescription = "Service Unavailable";
-                                req.Response.Close();
-                                return;
+                                if (!ServerLists.ContainsKey(cmd))
+                                {
+                                    req.Response.StatusCode = 404;
+                                    req.Response.StatusDescription = "Not Found";
+                                    req.Response.Close();
+                                    return;
+                                }
+
+                                cmd = path.Split('/')[1].ToLower();
+
+                                req.Response.Close(
+                                    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(ServerLists[cmd], Formatting.Indented)),
+                                    true
+                                );
                             }
-                            req.Response.Close(
-                                Encoding.UTF8.GetBytes(json.Result),
-                                true
-                            );
-                        }
-                        break;
-                    default:
-                        {
-                            if (!Content.ContainsKey(cmd))
+                            else if (path.Split('/').Length == 1)
+                            {
+                                req.Response.Close(
+                                    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(ServerLists, Formatting.Indented)),
+                                    true
+                                );
+                            }
+                            else
                             {
                                 req.Response.StatusCode = 404;
                                 req.Response.StatusDescription = "Not Found";
                                 req.Response.Close();
                                 return;
                             }
-                            Task<string> json = JsonConvert.SerializeObjectAsync(this.Content[cmd], Formatting.Indented);
-                            req.Response.KeepAlive = false;
-                            req.Response.ProtocolVersion = req.Request.ProtocolVersion;
-                            if (!json.Wait(3000, cancel.Token))
+                        }
+                        break;
+                    case "status":
+                        {
+                            if (path.Split('/').Length == 2)
                             {
-                                req.Response.StatusCode = 503;
-                                req.Response.StatusDescription = "Service Unavailable";
+                                if (!StatusIndicators.ContainsKey(cmd))
+                                {
+                                    req.Response.StatusCode = 404;
+                                    req.Response.StatusDescription = "Not Found";
+                                    req.Response.Close();
+                                    return;
+                                }
+
+                                cmd = path.Split('/')[1].ToLower();
+
+                                req.Response.Close(
+                                    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(StatusIndicators[cmd], Formatting.Indented)),
+                                    true
+                                );
+                            }
+                            else if (path.Split('/').Length == 1)
+                            {
+                                req.Response.Close(
+                                    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(StatusIndicators, Formatting.Indented)),
+                                    true
+                                );
+                            }
+                            else
+                            {
+                                req.Response.StatusCode = 404;
+                                req.Response.StatusDescription = "Not Found";
                                 req.Response.Close();
                                 return;
                             }
-                            req.Response.Close(
-                                Encoding.UTF8.GetBytes(json.Result),
-                                true
-                            );
+                        }
+                        break;
+                    case "cache":
+                        {
+                            if (path.Split('/').Length == 2)
+                            {
+                                if (!Content.ContainsKey(cmd))
+                                {
+                                    req.Response.StatusCode = 404;
+                                    req.Response.StatusDescription = "Not Found";
+                                    req.Response.Close();
+                                    return;
+                                }
+
+                                cmd = path.Split('/')[1].ToLower();
+
+                                req.Response.Close(
+                                    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(Content[cmd], Formatting.Indented)),
+                                    true
+                                );
+                            }
+                            else if (path.Split('/').Length == 1)
+                            {
+                                req.Response.Close(
+                                    Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(Content, Formatting.Indented)),
+                                    true
+                                );
+                            }
+                            else
+                            {
+                                req.Response.StatusCode = 404;
+                                req.Response.StatusDescription = "Not Found";
+                                req.Response.Close();
+                                return;
+                            }
+                        }
+                        break;
+                    default:
+                        {
+                            req.Response.StatusCode = 404;
+                            req.Response.StatusDescription = "Not Found";
+                            req.Response.Close();
                         }
                         break;
                 }

@@ -21,9 +21,11 @@ namespace fdocheck
         static FDOAuthServerCheck auth;
         static Iw4mCheck iw4m;
         static Iw5mCheck iw5m;
+        static WebCheck forum;
+        static KmshostCheck kmshost;
 
         static XmlDocument config;
-        
+
         static void Main(string[] args)
         {
             Console.WriteLine("API server initializing...");
@@ -36,7 +38,7 @@ namespace fdocheck
             var appender = new log4net.Appender.ManagedColoredConsoleAppender();
             appender.Threshold = log4net.Core.Level.All;
             var x = (XmlElement)config.SelectSingleNode("//backend/log4net");
-            if(x == null)
+            if (x == null)
             {
                 Console.WriteLine("Error: log4net configuration node not found. Check your config.xml");
                 Console.ReadKey();
@@ -48,6 +50,8 @@ namespace fdocheck
             auth = new FDOAuthServerCheck();
             iw4m = new Iw4mCheck(auth);
             iw5m = new Iw5mCheck(auth);
+            forum = new WebCheck("http://fourdeltaone.net/index.php", 60);
+            kmshost = new KmshostCheck();
 
             auth.TestUsername = config.SelectSingleNode("//backend/auth-username").InnerText;
             auth.TestPassword = config.SelectSingleNode("//backend/auth-password").InnerText;
@@ -57,9 +61,17 @@ namespace fdocheck
             api.Content.Add("login", auth);
             api.Content.Add("iw4m", iw4m);
             api.Content.Add("iw5m", iw5m);
-            api.Content.Add("forum", new WebCheck("http://fourdeltaone.net/index.php", 60));
-            api.Content.Add("kmshost", new KmshostCheck());
+            api.Content.Add("forum", forum);
+            api.Content.Add("kmshost", kmshost);
             api.Content.Add("backend-name", BackendName);
+            api.ServerLists.Add("iw4m", iw4m.AccessibleMasterServers[0].ServersListed);
+            api.ServerLists.Add("iw5m", iw5m.ListedServers);
+            api.StatusIndicators.Add("iw4m", new Iw4mStatusIndicator(ref iw4m));
+            api.StatusIndicators.Add("iw5m", new Iw5mStatusIndicator(ref iw5m));
+            api.StatusIndicators.Add("login", new LoginStatusIndicator(ref auth));
+            api.StatusIndicators.Add("forum", new WebStatusIndicator(ref forum));
+            api.StatusIndicators.Add("kmshost", new KmshostStatusIndicator(ref kmshost));
+
             api.Start();
 
             Console.WriteLine("API server starting, regular checks are now enabled.");
