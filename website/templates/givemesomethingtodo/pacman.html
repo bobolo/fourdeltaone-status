@@ -137,7 +137,7 @@ playerImage.src = "/images/pacman/player_animated.png";
 var ghostImage = new Image();
 ghostImage.src = "/images/pacman/ghost.png";
 var levelImage = new Image();
-levelImage.src = "/images/pacman/level_2.png?982354";
+levelImage.src = "/images/pacman/level_" + Math.round(Math.random() + 1, 0) + ".png";
 
 assetImages["player"] = playerImage;
 assetImages["ghost"] = ghostImage;
