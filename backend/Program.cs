@@ -74,14 +74,14 @@ namespace fdocheck
             try
             {
                 // I could have done it in an even more gay way, but nvm.
-                ((FDOAuthServerCheck)api.Content["login"]).CheckAuth();
-                ((FDOAuthServerCheck)api.Content["login"]).CheckAuthInternal();
-                ((Iw4mCheck)api.Content["iw4m"]).CheckNP();
-                ((Iw4mCheck)api.Content["iw4m"]).CheckMaster();
-                ((Iw5mCheck)api.Content["iw5m"]).CheckNP();
-                ((Iw5mCheck)api.Content["iw5m"]).CheckMaster();
-                ((WebCheck)api.Content["forum"]).Check();
-                ((KmshostCheck)api.Content["kmshost"]).CheckKmshost();
+                Task.Factory.StartNew(() => ((FDOAuthServerCheck)api.Content["login"]).CheckAuth());
+                Task.Factory.StartNew(() => ((FDOAuthServerCheck)api.Content["login"]).CheckAuthInternal());
+                Task.Factory.StartNew(() => ((Iw4mCheck)api.Content["iw4m"]).CheckNP());
+                Task.Factory.StartNew(() => ((Iw4mCheck)api.Content["iw4m"]).CheckMaster());
+                Task.Factory.StartNew(() => ((Iw5mCheck)api.Content["iw5m"]).CheckNP());
+                Task.Factory.StartNew(() => ((Iw5mCheck)api.Content["iw5m"]).CheckMaster());
+                Task.Factory.StartNew(() => ((WebCheck)api.Content["forum"]).Check());
+                Task.Factory.StartNew(() => ((KmshostCheck)api.Content["kmshost"]).CheckKmshost());
 
             }
             catch (OperationCanceledException)

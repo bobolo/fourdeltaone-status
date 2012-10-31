@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <backend>
   <!--
+  Put a random name in here, it will show on the status page as the server's
+  name and in the API output as "server-name".
+  -->
+  <backend-name>test</backend-name>
+
+  <!--
   To test the authentication interfaces properly, the backend needs to log in
   with valid login data. You need to put that data in here.
   -->
