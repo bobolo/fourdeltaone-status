@@ -26,10 +26,8 @@ API URLs
 <p>
 <ul>
 <li><code>http://s.mufff.in/api/cache</code> - Outputs all the available cached data from the backend.</li>
-<li><code>http://s.mufff.in/api/iw4m</code> - Outputs IW4M-specific information</li>
-<li><code>http://s.mufff.in/api/iw5m</code> - Outputs IW5M-specific information</li>
-<li><code>http://s.mufff.in/api/forum</code> - Outputs forum-/website-specific information</li>
-<li><code>http://s.mufff.in/api/login</code> - Outputs login interface-specific information</li>
+<li><code>http://s.mufff.in/api/status</code> - Outputs only the status indications (it's all boolean)</li>
+<li><code>http://s.mufff.in/api/serverlist</code> [not working yet] - Server lists only, use <code>/api/cache</code> for now instead.</li>
 </ul>
 </p>
 
