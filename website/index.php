@@ -8,16 +8,7 @@ if(empty($_GET["page"]) || !file_exists("pages/".$_GET["page"].".php"))
 define("ROOT", dirname(__FILE__));
 
 require_once("includes/html_api.php");
-
-$menu = Array(
-	"links"=>Array(
-		page("status", "Status", "status"),
-		page("iw4msl", "IW4M servers", "iw4msl"),
-		page("iw5msl", "IW5M servers", "iw5msl"),
-		page("random", "I'm bored", "random"),
-		page("4d1", "FourDeltaone", "http://fourdeltaone.net/")
-	)
-);
+require_once("menu.cfg");
 
 function gen_leds($titles)
 {
