@@ -6,4 +6,4 @@ fi
 
 git submodule update
 
-MONO_IOMAP=case xbuild /p:TargetFrameworkProfile="" /verbosity:minimal backend/backend.csproj
+MONO_IOMAP=case xbuild /maxcpucount /p:TargetFrameworkProfile="" /verbosity:minimal backend/backend.csproj
