@@ -4,8 +4,7 @@ require ROOT."/data/iw4m.gametypes";
 
 $serverlist_file =
 	file_exists("/srv/iw4msl/serverinfo.txt") ? "/srv/iw4msl/serverinfo.txt"
-	: file_exists(ROOT . "/../../iw4msl/serverinfo.txt") ? ROOT . "/../../iw4msl/serverinfo.txt"
-	: "iw4m-serverinfo.txt"
+	: ROOT . "/../../iw4msl/serverinfo.txt"
 	;
 
 function parse_flag($country)
