@@ -5,6 +5,8 @@ obj
 # Unneeded files
 *.suo
 *.user
+/website/desktop.ini
+desktop.ini
 
 # mstest test results
 TestResults
