@@ -8,7 +8,6 @@ $serverlist_file =
 	: file_exists(ROOT . "/../../iw5msl/serverinfo.txt") ? ROOT . "/../../iw5msl/serverinfo.txt"
 	: "iw5m-serverinfo.txt"
 	;
-	
 
 function parse_flag($country)
 {
