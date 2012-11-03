@@ -2,6 +2,12 @@
 require ROOT."/data/iw4m.maps";
 require ROOT."/data/iw4m.gametypes";
 
+$serverlist_file =
+	file_exists("/srv/iw4msl/serverinfo.txt") ? "/srv/iw4msl/serverinfo.txt"
+	: file_exists(ROOT . "/../../iw4msl/serverinfo.txt") ? ROOT . "/../../iw4msl/serverinfo.txt"
+	: "iw4m-serverinfo.txt"
+	;
+
 function parse_flag($country)
 {
 	switch(strtolower($country))
@@ -97,7 +103,7 @@ function parse_gamecolors($string)
 
 <div id="content" style="text-align: center">
 						<h2>IW4M Server List</h2>
-						<p>Last update: <?=time() - filectime("/srv/iw4msl/serverinfo.txt") ?> seconds ago</p>
+						<p>Last update: <?=time() - filemtime($serverlist_file) ?> seconds ago</p>
 						<p style="font-size: 8px">Click on the headers to sort the list!</p>
 						<table class="tablesorter" id="sl" border="0" style="width: 100%; text-align:center;background-color:rgba(255,255,255,0.3)">
 							<thead><tr>
@@ -111,11 +117,11 @@ function parse_gamecolors($string)
 								<th>Country</th>
 							</tr></thead><tbody>
 <? $odd = false; ?>
-<? foreach(file("/srv/iw4msl/serverinfo.txt") as $line) { ?>
+<? foreach(file($serverlist_file) as $line) { ?>
 <? $line = trim($line); ?>
 <? list($name,$ip,$players,$map,$type,$mod,$country) = explode("|!|!|", $line . "|!|!|"); ?>
 <? $ixp = explode(":", $ip); ?>
-<? if(in_array($ixp[0], file("servers.banlist")) || in_array($ip, file("servers.banlist"))) continue; ?>
+<? if(in_array($ixp[0], file("data/servers.banlist")) || in_array($ip, file("data/servers.banlist"))) continue; ?>
 <? $type = parse_gametype($type); ?>
 <? if(isset($_MAPS["thumbs"][$map])) $map_thumb = $_MAPS["thumbs"][$map]; else $map_thumb = "/images/no_map.png"; ?>
 <!-- map_thumb = <?=$map_thumb ?>; thumb count is <?=@count($_MAPS["thumbs"]) ?>; map = <?=$map ?> -->
