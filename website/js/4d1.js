@@ -112,24 +112,24 @@ function parseCache(d)
 	var description = "No issues have been detected yet.";
 	if(level <= 10)
 	{
-		title = "???";
-		description = "?????????????????????????!!!!<br />"
+		title = "Heavy issues";
+		description = "The status page detected some severe problems on the fourDeltaOne interfaces, check below to see which interfaces are affected.<br />"
 			+ "If you have nothing to do, try <a href=\"random\">this</a>.";
 		suffix = ".red";
 	}
 	else if(level < 20)
 	{
-		title = "Degraded performance mode";
-		description = "FourDeltaOne has problems on some interfaces, check below to see which interfaces are affected by the problem.";
+		title = "Problems detected";
+		description = "fourDeltaOne has problems on some interfaces, check below to see which interfaces are affected by the problem.";
 		suffix = ".yellow";
 	}
 
 	if(window.location.search.indexOf("level") != -1)
 		description = "Operation level " + level + " / 20<br />" + description;
 
-	//if(window.location.search.indexOf("debug") == -1)
-	//	statusHeader("", "Okay.", "The operation levels are fucked up. Anyways, below this banner is the real status.");
-	//else
+	if(window.location.search.indexOf("debug") == -1)
+		statusHeader("", "Okay.", "Would you stop writing s.mufff.in in the chat? Thank you.");
+	else
 		statusHeader(suffix, title, description);
 }
 
