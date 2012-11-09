@@ -108,7 +108,7 @@ function parseCache(d)
 		+ (2 * bool2int(d["login"]["AuthInternalOnline"]));
 
 	var suffix = ".green";
-	var title = "It's not red! :o";
+	var title = "It's working";
 	var description = "No issues have been detected yet.";
 	if(level <= 10)
 	{
@@ -127,9 +127,9 @@ function parseCache(d)
 	if(window.location.search.indexOf("level") != -1)
 		description = "Operation level " + level + " / 20<br />" + description;
 
-	if(window.location.search.indexOf("debug") == -1)
-		statusHeader("", "Okay.", "Would you stop writing s.mufff.in in the chat? Thank you.");
-	else
+	//if(window.location.search.indexOf("debug") == -1)
+	//	statusHeader("", "Okay.", "Would you stop writing s.mufff.in in the chat? Thank you.");
+	//else
 		statusHeader(suffix, title, description);
 }
 
