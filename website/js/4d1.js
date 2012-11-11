@@ -157,3 +157,20 @@ function server(id, isOnline, counter, interval, offlinetext)
 	e.attr("level", counter * interval);
 }
 
+
+
+function init_floatstatus()
+{
+	setInterval(do_floatstatus, 100);
+}
+
+function do_floatstatus()
+{
+	x -= 5;
+	if(x == 1400)
+		x = 0;
+	$("#header_bg").css("background-position", x + "px center");
+}
+
+var x = -700;
+$(document).ready(init_floatstatus);
