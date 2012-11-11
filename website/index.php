@@ -37,28 +37,23 @@ function gen_leds($titles)
 <? include("templates/scripts.html"); ?>
 </head>
 
-<body>
-	<div id="menu_bg">
-		<div id="menu">
-		<?php menu(); ?>
-		<p style="padding: 20px 5px 5px 5px; font-size: 32px; font-family: Electrolize; display: none">
+<body class="gradient">
+	<div class="headbar gradient">
+		<div class="headlogo">
 			<span id="fdocol">fourdeltaone</span>.<?=$_GET["page"] ?>
-			<span style="font-size: 11px" id="fdoss"><!-- --></span>
-		</p>
 		</div>
+		<span style="font-size: 11px" id="fdoss"><!-- --></span>
+		<?php menu(); ?>
 	</div>
-<!--
-	<div id="logo" style="display: none">
-	</div>
--->
 
 	<? require("pages/".$_GET["page"].".php"); ?>
 
+<? /* ?>
 	<div style="text-align: center; font-size: 8px; padding-top: 50px; color: #444">
 		<p>This status page is being maintained by Icedream, not by the 4D1 staff. &copy; 2012 Icedream</p>
 	</div>
 
 	<iframe src="http://178.33.27.16/4d1/ircmon.php?referer=<?php echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>">
-
+<? */ ?>
     </body>
 </html>

@@ -29,13 +29,12 @@ function statusHeader(suffix, title, description)
 		var color = suffix.substring(1);
 	else
 		var color = "grey";
-	$("#header_repeat_bg").css("background-image", "url(css/images/header_bg_repeat" + suffix + ".png)");
 	$("#header_bg").css("background-image", "url(css/images/header_bg" + suffix + ".jpg)");
 	$("#header_title").html(title);
 	$("#header_text").html(description);
-	$("#header_repeat_bg").fadeIn("fast");
+	$("#header_bg").slideDown("slow", "swing");
 	$("#fdocol").animate( { "color":color }, "slow");
-	$("#menu > p").fadeIn("slow");
+	$(".headbar").slideDown("slow", "swing");
 }
 
 function requestCache()
@@ -72,8 +71,7 @@ function parseCache(d)
 		return;
 	}
 
-	if(window.location.pathname == "/status")
-		$("#content").fadeIn("fast");
+	$("#content").fadeIn("slow");
 
 	$("#fdoss").text(d["backend-name"]);
 
@@ -157,11 +155,5 @@ function server(id, isOnline, counter, interval, offlinetext)
 	var e = $("#led-" + id);
 	e.attr("src", isOnline ? led("green") : (interval > 0) ? (counter * interval > 90 ? led("yellow") : led("red")) : led("red"));
 	e.attr("level", counter * interval);
-	/*if(!isOnline)
-	{
-		$("#" + category + "-check>li").last().after($("<li class='server-off'>" + offlinetext + "</li>"));
-		//if(counter > 2)
-		//  $("#" + category + "-check>li").last().after($("<li>" + servername + " detected as <em>possibly</em> online.</li>"));
-	}*/
 }
 

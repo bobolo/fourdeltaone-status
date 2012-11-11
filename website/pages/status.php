@@ -1,19 +1,9 @@
-<div id="header_repeat_bg" style="display: none">
-	<div id="header_bg">
-		<div id="header">
-			<h3 id="header_title">Status website is down</h3>
-			<p id="header_text">
-				The website is down for maintenance. Check back later.
-			</p>
-			<!--<div class="learn"><a href="#">learn more</a></div> <= learn more!-->
-		</div>
-		<!--
-		<div class="header_right">
-			<img src="images/img3.jpg" alt="" title="" style="float: left; padding: 10px 0px 0px 0px" />
-		</div>
-		-->
-		<div class="clear"></div>
+<div id="header_bg">
+	<div id="header">
+		<p id="header_title">Status website is down</p>
+		<p id="header_text">The website is down for maintenance. Check back later.</p>
 	</div>
+	<div class="clear"></div>
 </div>
 		
 <div id="content" style="text-align: center; display:none">
