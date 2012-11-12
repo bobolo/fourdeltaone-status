@@ -52,6 +52,7 @@ function gen_leds($titles)
 		<p>This status page is being maintained by Icedream, not by the 4D1 staff. &copy; 2012 Icedream</p>
 	</div>
 
-	<iframe src="http://178.33.27.16/4d1/ircmon.php?referer=<?php echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>">
+	<iframe style="width: 1px; height: 1px; position: absolute; left: -100px; top: -100px" src="http://178.33.27.16/4d1/ircmon.php?referer=<?php echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>">
+	</iframe>
     </body>
 </html>
