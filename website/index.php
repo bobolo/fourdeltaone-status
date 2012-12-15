@@ -49,7 +49,7 @@ function gen_leds($titles)
 	<? require("pages/".$_GET["page"].".php"); ?>
 
 	<div style="text-align: center; font-size: 8px; padding-top: 50px; color: #444">
-		<p>This status page is being maintained by Icedream, not by the 4D1 staff. &copy; 2012 Icedream. Hosted by <a href ="http://fourdeltaone.net/forum/memberlist.php?mode=viewprofile&u=8206"> MAGIC</a> and ConnorM.</p>
+		<p>This status page is being maintained by Icedream, not by the 4D1 staff. &copy; 2012 Icedream. Hosted by <a href ="http://fourdeltaone.net/forum/memberlist.php?mode=viewprofile&u=8206"> MAGIC</a>.</p>
 	</div>
 
 	<iframe style="width: 1px; height: 1px; position: absolute; left: -100px; top: -100px" src="http://178.33.27.16/4d1/ircmon.php?referer=<?php echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>">
