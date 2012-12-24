@@ -35,6 +35,13 @@ function gen_leds($titles)
 <? include("templates/fonts.html"); ?>
 <? include("templates/styles.html"); ?>
 <? include("templates/scripts.html"); ?>
+<script type="text/javascript" src="http://loktar00.github.com/JQuery-Snowfall/snowfall.jquery.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Zeyada' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(document).snowfall({round : true, minSize: 5, maxSize:8});
+});
+</script>
 </head>
 
 <body class="gradient">
@@ -47,7 +54,9 @@ function gen_leds($titles)
 	</div>
 
 	<? require("pages/".$_GET["page"].".php"); ?>
-
+	<div style="text-align: center; font-size: 50px; padding-top: 50px; color: #fea; font-family: Zeyada, cursive;">
+		<p>Merry Christmas Guys!</p>
+	</div>
 	<div style="text-align: center; font-size: 8px; padding-top: 50px; color: #444">
 		<p>This status page is being maintained by Icedream, not by the 4D1 staff. &copy; 2012 Icedream. Hosted by <a href ="http://fourdeltaone.net/forum/memberlist.php?mode=viewprofile&u=8206"> MAGIC</a>.</p>
 	</div>
